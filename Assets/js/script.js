@@ -18,6 +18,7 @@ const apiKey = "2e903f6b5d70f51dab346edfeb17bdd4";
 const trendingMoviesUrlEndpoint = "https://api.themoviedb.org/3/trending/movie/week?api_key=2e903f6b5d70f51dab346edfeb17bdd4";
 const moviePosterURL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
+
 initPage();
 
 const createElementsAndGetTitles = (data) => {
