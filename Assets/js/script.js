@@ -33,6 +33,5 @@ const createElementsAndGetTitles = (data) => {
     // return data.map(reviews => {
       //  const movieReviewsEl = document.createElement(`movieReviewsEl-${reviews.title}`)
        // return ()
-
    // }
 // };
