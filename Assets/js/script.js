@@ -44,10 +44,18 @@ const createElementsAndGetTitles = (data) => {
 		return {title: movie.original_title, url: `${moviePosterURL}${movie.backdrop_path}`};
 	})
 };
+const apiKeyNYTIMES = "WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9";
 
-const getReviews = (movieName) => {
-	console.log('Clicked movie: ' + movieName);
-}
+// this is the url endopoint to pull from NY Times to see if there are any reviews.
+const movieReviewURLEndodpoint = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9&query=";
+
+//const resReviews = await fetch (movieReviewURLEndodpoint);
+//const reviewData = await resReviews.json();
+//const movieReviews = createElementsAndGetTitles(reviewData.results);
+//console.log('Labawski Reviews',movieReviews);
+//const getReviews = (movieName) => {
+//	console.log('Clicked movie: ' + movieName);
+//}
 
 //const getMovieReviews = (data) => {
 //console.log('movie reviews', data);
