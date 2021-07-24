@@ -36,7 +36,7 @@ const createElementsAndGetTitles = (data) => {
 			'</div>' +
 			' <footer class="card-footer">' +
 			'<p class="card-footer-item">' +
-			'<span>View <a onclick="getReviews(\'' + movie.original_title + '\')">Reviews</a>' +
+			'<span>Find <a onclick="getReviews(\'' + movie.original_title + '\')">Trailers & Media</a>' +
 			'</span>' +
 			'</p>' +
 			'</footer></div>';
