@@ -1,0 +1,8 @@
+.container-custom1 {
+    flex-grow: 1;
+    margin: 0 auto;
+    position: relative;
+    width: auto;
+    background-color: burlywood;
+    color: black;
+}
