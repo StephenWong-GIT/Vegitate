@@ -15,11 +15,12 @@ const initPage = async() => {
     }
     // define API Key constant, and API Endpoint Contants
 const apiKey = "2e903f6b5d70f51dab346edfeb17bdd4";
-const trendingMoviesUrlEndpoint = "https://api.themoviedb.org/3/trending/movie/week?api_key=2e903f6b5d70f51dab346edfeb17bdd4";
+const trendingMoviesUrlEndpoint = "https://api.themoviedb.org/3/trending/movie/week?api_key=" + apiKey;
 const moviePosterURL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
+// init page
 initPage();
-
+// defined constant function to grab data from JSON from fwth reqeust, ns create an HTML element for each item in the array
 const createElementsAndGetTitles = (data) => {
     console.log('movies', data);
     return data.map(movie => {
