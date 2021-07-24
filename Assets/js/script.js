@@ -3,6 +3,10 @@ const searchEl = document.getElementById("search-button");
 const clearEl = document.getElementById("clear-history");
 const currentMovie = document.getElementById("movie-selected");
 const movies = document.getElementById("movies");
+const keywordInput = document.getElementById('keyword-input');
+const maxresultInput = document.getElementById('maxresult-input');
+const orderInput = document.getElementById('order-input');
+const videoList = document.getElementById('videoListContainer');
 
 // initiate page function, and define constants
 const initPage = async () => {
@@ -19,8 +23,9 @@ const apiKey = "2e903f6b5d70f51dab346edfeb17bdd4";
 const trendingMoviesUrlEndpoint = "https://api.themoviedb.org/3/trending/movie/week?api_key=" + apiKey;
 const moviePosterURL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
+// init page
 initPage();
-
+// defined constant function to grab data from JSON from fwth reqeust, ns create an HTML element for each item in the array
 const createElementsAndGetTitles = (data) => {
 	return data.map(movie => {
 		var div = document.createElement('div');
@@ -44,17 +49,8 @@ const createElementsAndGetTitles = (data) => {
 		return {title: movie.original_title, url: `${moviePosterURL}${movie.backdrop_path}`};
 	})
 };
-const apiKeyNYTIMES = "WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9";
 
-// this is the url endopoint to pull from NY Times to see if there are any reviews.
-const movieReviewURLEndodpoint = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9&query=";
 
-const ytForm = document.getElementById('yt-form');
-const keywordInput = document.getElementById('keyword-input');
-const maxresultInput = document.getElementById('maxresult-input');
-const orderInput = document.getElementById('order-input');
-const videoList = document.getElementById('videoListContainer');
-var pageToken = '';
   
 function paginate(e, obj) {
     e.preventDefault();
@@ -84,7 +80,7 @@ function execute() {
     .then(function(response) {
         // Handle the results here (response.result has the parsed body).
         const listItems = response.result.items;
-		console.log(response.result.list);
+		console.log(response.result.items)
         if (listItems) {
             let output = '<h4>Videos</h4><ul>';
   
