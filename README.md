@@ -10,7 +10,7 @@ The hour alloted to each slot will change color depeneding on the condiiton of t
 
 ## Contents
 1. [Deployed Page](#deployed-page)
-2. [Day Scheduler Comments](#deploymed-page)
+2. [Project Comments](#deploymed-page)
 3. [Contributions](#contributions)
 
 ## Deployed Page
