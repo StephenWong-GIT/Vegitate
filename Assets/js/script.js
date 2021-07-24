@@ -49,19 +49,66 @@ const apiKeyNYTIMES = "WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9";
 // this is the url endopoint to pull from NY Times to see if there are any reviews.
 const movieReviewURLEndodpoint = "https://api.nytimes.com/svc/movies/v2/reviews/search.json?api-key=WyaWdFrtDXpA5hGBGGfXhNcvUYyItAf9&query=";
 
-//const resReviews = await fetch (movieReviewURLEndodpoint);
-//const reviewData = await resReviews.json();
-//const movieReviews = createElementsAndGetTitles(reviewData.results);
-//console.log('Labawski Reviews',movieReviews);
-//const getReviews = (movieName) => {
-//	console.log('Clicked movie: ' + movieName);
-//}
+const ytForm = document.getElementById('yt-form');
+const keywordInput = document.getElementById('keyword-input');
+const maxresultInput = document.getElementById('maxresult-input');
+const orderInput = document.getElementById('order-input');
+const videoList = document.getElementById('videoListContainer');
+var pageToken = '';
+  
+function paginate(e, obj) {
+    e.preventDefault();
+    pageToken = obj.getAttribute('data-id');
+    execute();
+}
+  
+// Make sure the client is loaded before calling this method.
+function execute() {
+    const searchString = 'black%20widows';
+    const maxresult = maxresultInput.value;
+    const orderby = orderInput.value;
+  
+    var arr_search = {
+        "part": 'snippet',
+        "type": 'video',
+        "order": orderby,
+        "maxResults": maxresult,
+        "q": searchString
+    };
+  
+    if (pageToken != '') {
+        arr_search.pageToken = pageToken;
+    }
+  
+    return gapi.client.youtube.search.list(arr_search)
+    .then(function(response) {
+        // Handle the results here (response.result has the parsed body).
+        const listItems = response.result.items;
+		console.log(response.result.list);
+        if (listItems) {
+            let output = '<h4>Videos</h4><ul>';
+  
+            listItems.forEach(item => {
+                const videoId = item.id.videoId;
+                const videoTitle = item.snippet.title;
+                output += `
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=${videoId}"><img src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" /></a><p>${videoTitle}</p></li>
+                `;
+            });
+            output += '</ul>';
+  
+            if (response.result.prevPageToken) {
+                output += `<br><a class="paginate" href="#" data-id="${response.result.prevPageToken}" onclick="paginate(event, this)">Prev</a>`;
+            }
+  
+            if (response.result.nextPageToken) {
+                output += `<a href="#" class="paginate" data-id="${response.result.nextPageToken}" onclick="paginate(event, this)">Next</a>`;
+            }
+  
+            // Output list
+            videoList.innerHTML = output;
+        }
+    },
+    function(err) { console.error("Execute error", err); });
 
-//const getMovieReviews = (data) => {
-//console.log('movie reviews', data);
-//return data.map(reviews => {
-//const movieReviewsEl = document.createElement(`movieReviewsEl-${reviews.title}`)
-//  return ()
-
-//}
-//}
+}
