@@ -15,9 +15,9 @@ The hour alloted to each slot will change color depeneding on the condiiton of t
 
 ## Deployed Page
 
-![Deployed Page Screenshot](./assets/Work-Day-Scheduler.png)
+![Deployed Page Screenshot](./assets/Veggie-Takes.png)
 
-[Deployed GitPage](https://github.com/MichaelAdamGroberman/Day-Scheduler)
+[Deployed GitPage](https://stephenwong-git.github.io/Vegitate/)
 
 ## Day Scheduler Comments
 * picked my CSS frameworks and scripts that will be used for this assignment 
@@ -27,4 +27,4 @@ The hour alloted to each slot will change color depeneding on the condiiton of t
 * Would love to scale this assignment out to include gmail and goole calander integration, or have it build it react.
 
 ## Contributions
-* Developed, written, and commented by Michael Groberman
+* Developed, written, and commented by Michael G, Rob M, Stephen W, Isabela F
