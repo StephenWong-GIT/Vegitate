@@ -1,4 +1,4 @@
-# Work/Day Scheduler  
+# VeggieTak(t)es 
 ## Project Description
 
 Our assigment was to create a simple single page web application, which can we used as a daily planner, a work day planner, or any other type of day planner.
