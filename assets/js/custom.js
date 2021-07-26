@@ -70,5 +70,6 @@ function execute() {
             videoList.innerHTML = output;
         }
     },
+    console.log(response);
     function(err) { console.error("Execute error", err); });
 }
