@@ -38,10 +38,10 @@ const createElementsAndGetTitles = (data) => {
 // }
 // };
 
-// --- stephen
+// ----- stephen
 
 // function getQuote() {
-// fetch("https://quotesondesign.com/wp-json/posts?filter[orderby]=rand&filter[posts_per_page]=1&callback=" + Math.random())
+// fetch("https://www.omdbapi.com/" + Math.random())
 // .then(response => response.json())
 // .then(function(data) {
 // console.log(data);
@@ -73,3 +73,5 @@ const createElementsAndGetTitles = (data) => {
 // window.onload = getQuote; // new quote on page load
 
 // add event listener when click, on call click being added - wong
+
+// on call review click.
