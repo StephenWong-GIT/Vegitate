@@ -49,11 +49,3 @@ const getReviews = (movieName) => {
 	console.log('Clicked movie: ' + movieName);
 }
 
-//const getMovieReviews = (data) => {
-//console.log('movie reviews', data);
-//return data.map(reviews => {
-//const movieReviewsEl = document.createElement(`movieReviewsEl-${reviews.title}`)
-//  return ()
-
-//}
-//}

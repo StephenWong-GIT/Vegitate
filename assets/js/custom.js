@@ -46,6 +46,7 @@ function execute() {
     .then(function(response) {
         // Handle the results here (response.result has the parsed body).
         const listItems = response.result.items;
+        console.log(data.result);
         if (listItems) {
             let output = '<h4>Videos</h4><ul>';
   
@@ -70,5 +71,6 @@ function execute() {
             videoList.innerHTML = output;
         }
     },
+    
     function(err) { console.error("Execute error", err); });
 }
