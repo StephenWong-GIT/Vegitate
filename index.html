@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,27 +8,35 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
-<body>
-<section class="hero is-primary">
-    <div class="hero-body">
-        <div class="container">
-            <h1 class="title is-1">Veggie-Takes</h1>
 
-            <div class="control">
-                <input class="input" type="text" placeholder="Movie-Search" style="width: 300px;">
-                <button class="button">Search</button>
+<body>
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1>Veggie-Takes</h1>
+                <form>
+                    <div class="form-group">
+                        <input type="text" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Search..." />
+                    </div>
+
+                    <button type="submit" class="btn" id="search">
+                Search a Movie
+            </button>
+                </form>
+
+                <div id="movies-searchable"></div>
+                <div id="movies-container"></div>
             </div>
+    </section>
+    <section class="section is-medium">
+        <div class="columns is-multiline" id="movies">
         </div>
-    </div>
-</section>
-<section class="section is-medium">
-    <div class="columns is-multiline" id="movies">
-    </div>
-</section>
+    </section>
 </body>
 <script src="https://apis.google.com/js/api.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="./assets/js/apiTransaction.js"></script>
 <script src="./assets/js/script.js"></script>
-<script src="./assets/js/custom.js"></script>
+
 </html>
