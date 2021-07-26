@@ -13,31 +13,30 @@
 </head>
 
 <body>
-    // add to where you want *pref* top or bot of the body // (
-    <)h1 onclick="changeText()">Click</h1>
-        // (
-        <)script> function changeText() { dowhat you gotta do } </script>
-            //
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title is-1">Veggie-Takes</h1>
 
-            <section class="hero is-primary">
-                <div class="hero-body">
-                    <div class="container">
-                        <h1 class="title is-1">Veggie-Takes</h1>
-
-                        <div class="control">
-                            <input class="input" type="text" placeholder="Movie-Search" style="width: 300px;">
-                            <button class="button">Search</button>
-                        </div>
-                    </div>
+                <div class="control">
+                    <input class="input" type="text" placeholder="Movie-Search" style="width: 300px;">
+                    <button class="button">Search</button>
                 </div>
-            </section>
-            <section class="section is-medium">
-                <div class="columns is-multiline" id="movies">
-
+                <div class="popup" onclick="myFunction()">Movies & Trailers
+                    <span class="popuptext" id="myPopup">Movies & Trailers</span>
                 </div>
-            </section>
-
+            </div>
+        </div>
+    </section>
+    <section class="section is-medium">
+        <div class="columns is-multiline" id="movies">
+        </div>
+    </section>
 </body>
-
+<script src="https://apis.google.com/js/api.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+<script src="./assets/js/script.js"></script>
+<script src="./assets/js/custom.js"></script>
 
 </html>
