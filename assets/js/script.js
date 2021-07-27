@@ -1,3 +1,5 @@
+gapi.load("client", loadClient);
+
 const inputEl = document.getElementById("movie-input");
 const clearEl = document.getElementById("clear-history");
 const currentMovie = document.getElementById("movie-selected");
@@ -49,7 +51,7 @@ const createElementsAndGetTitles = (data) => {
 			'</div>' +
 			' <footer class="card-footer">' +
 			'<p class="card-footer-item">' +
-			'<span>Find <a onclick="getReviews(\'' + movie.original_title + '\')">Trailers & Media</a>' +
+			'<span><a class="button is-primary is-large modal-button" data-target="modal" onclick="getReviews(\'' + movie.original_title + '\')">Trailers & Media</a>' +
 			'</span>' +
 			'</p>' +
 			'</footer></div>';
@@ -93,6 +95,70 @@ function createVideoTemplate(data) {
     }
 }
 const getReviews = (movieName) => {
-	console.log('Clicked movie: ' + movieName);
+
+
+	loadClient();
+	execute(movieName);
+	var modal = document.getElementById("modal-tre");
+	modal.className = 'modal is-active';
+
+	var modalMovieTitle = document.getElementById("modalMovieTitle");
+	modalMovieTitle.innerText = movieName;
+
+	var modalMovieBody = document.getElementById("modalMovieBody");
+
+
+};
+
+function loadClient() {
+	gapi.client.setApiKey("AIzaSyAw-kJfm7f9eOk4vpEI3pYEoBIZuP1txDU");
+	return gapi.client.load("https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest")
+	.then(function() { console.log("GAPI client loaded for API"); },
+		function(err) { console.error("Error loading GAPI client for API", err); });
+}
+
+function execute(movieName) {
+	const searchString = movieName;
+	const maxresult = 3;
+
+	var arr_search = {
+		"part": 'snippet',
+		"type": 'video',
+		"maxResults": maxresult,
+		"q": searchString
+	};
+
+	return gapi.client.youtube.search.list(arr_search)
+	.then(function(response) {
+			// Handle the results here (response.result has the parsed body).
+			const listItems = response.result.items;
+			if (listItems) {
+				let output = '<h4>Videos</h4><ul>';
+
+				listItems.forEach(item => {
+					const videoId = item.id.videoId;
+					const videoTitle = item.snippet.title;
+					output += `
+                    <li><a data-fancybox href="https://www.youtube.com/watch?v=${videoId}"><img src="http://i3.ytimg.com/vi/${videoId}/hqdefault.jpg" /></a><p>${videoTitle}</p></li>
+                `;
+				});
+				output += '</ul>';
+
+				if (response.result.prevPageToken) {
+					output += `<br><a class="paginate" href="#" data-id="${response.result.prevPageToken}" onclick="paginate(event, this)">Prev</a>`;
+				}
+
+				if (response.result.nextPageToken) {
+					output += `<a href="#" class="paginate" data-id="${response.result.nextPageToken}" onclick="paginate(event, this)">Next</a>`;
+				}
+
+				var modalMovieBody = document.getElementById("modalMovieBody");
+
+				// Output list
+				modalMovieBody.innerHTML = output;
+			}
+		},
+
+		function(err) { console.error("Execute error", err); });
 }
 
