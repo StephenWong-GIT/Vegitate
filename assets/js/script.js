@@ -1,10 +1,14 @@
 gapi.load("client", loadClient);
 
 const inputEl = document.getElementById("movie-input");
-const searchEl = document.getElementById("search-button");
 const clearEl = document.getElementById("clear-history");
 const currentMovie = document.getElementById("movie-selected");
 const movies = document.getElementById("movies");
+
+const searchButton = document.querySelector('#search');;
+const searchInput = document.querySelector('#exampleInput');
+const moviesContainer = document.querySelector('#movies-container');
+const moviesSearchable = document.querySelector('#movies-searchable');
 
 // initiate page function, and define constants
 const initPage = async () => {
@@ -22,6 +26,15 @@ const trendingMoviesUrlEndpoint = "https://api.themoviedb.org/3/trending/movie/w
 const moviePosterURL = "https://www.themoviedb.org/t/p/w220_and_h330_face";
 
 initPage();
+
+function resetInput() {
+    searchInput.value = '';
+}
+
+function handleGeneralError(error) {
+    log('Error: ', error.message);
+    alert(error.message || 'Internal Server');
+}
 
 const createElementsAndGetTitles = (data) => {
 	return data.map(movie => {
@@ -46,7 +59,41 @@ const createElementsAndGetTitles = (data) => {
 		return {title: movie.original_title, url: `${moviePosterURL}${movie.backdrop_path}`};
 	})
 };
+function createIframe(video) {
+    const videoKey = (video && video.key) || 'No key found!!!';
+    const iframe = document.createElement('iframe');
+    iframe.src = `http://www.youtube.com/embed/${videoKey}`;
+    iframe.width = 360;
+    iframe.height = 315;
+    iframe.allowFullscreen = true;
+    return iframe;
+}
+function insertIframeIntoContent(video, content) {
+    const videoContent = document.createElement('div');
+    const iframe = createIframe(video);
 
+    videoContent.appendChild(iframe);
+    content.appendChild(videoContent);
+}
+function createVideoTemplate(data) {
+    const content = this.content;
+    content.innerHTML = '<p id="content-close">X</p>';
+    
+    const videos = data.results || [];
+
+    if (videos.length === 0) {
+        content.innerHTML = `
+            <p id="content-close">X</p>
+            <p>No Trailer found for this video id of ${data.id}</p>
+        `;
+        return;
+    }
+
+    for (let i = 0; i < 4; i++) {
+        const video = videos[i];
+        insertIframeIntoContent(video, content);
+    }
+}
 const getReviews = (movieName) => {
 
 
